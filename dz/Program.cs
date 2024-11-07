@@ -413,17 +413,19 @@ namespace dz
             {
                 string[] first_dot = Console.ReadLine().Split();
                 string[] second_dot = Console.ReadLine().Split();
+
+                double x1 = double.Parse(first_dot[0]);
+                double y1 = double.Parse(first_dot[1]);
+                double x2 = double.Parse(second_dot[0]);
+                double y2 = double.Parse(second_dot[1]);
+
+                Console.WriteLine($"{Math.Sqrt(Math.Pow((x2 - x1), 2) + Math.Pow((y2 - y1), 2))}");
             }
             catch (Exception e)
             {
                 Console.WriteLine("Некорректный ввод, нужны два числа в одной строке через пробел (и так два раза)", e);
             }
-            double x1 = double.Parse(first_dot[0]);
-            double y1 = double.Parse(first_dot[1]);
-            double x2 = double.Parse(second_dot[0]);
-            double y2 = double.Parse(second_dot[1]);
 
-            Console.WriteLine($"{Math.Sqrt(Math.Pow((x2 - x1), 2) + Math.Pow((y2 - y1), 2))}");
 
             Console.WriteLine("\n");
             //19 
@@ -457,7 +459,7 @@ namespace dz
 
             Console.WriteLine("Введите количество секунд, прошедших с 00:00");
             int n20 = int.Parse(Console.ReadLine());
-            
+
             int hour = n20 / 3600;
             int minute = n20 % 3600 / 60;
             int second = n20 % 60;
@@ -490,7 +492,7 @@ namespace dz
 
             Console.WriteLine("Введите трехзначное число");
             int n22 = int.Parse(Console.ReadLine());
-            if (100 <= n22 <= 999)
+            if (100 <= n22 & n22 <= 999)
             {
                 Console.WriteLine($"{n22 % 10 * 100 + (int)n22 / 10}");
             }
@@ -498,7 +500,7 @@ namespace dz
             {
                 Console.WriteLine("Это не трехзначное число");
             }
-                        
+
             Console.WriteLine("\n");
             //23
             // Дано число, вывести количество сотен и тысяч в нём
@@ -507,7 +509,7 @@ namespace dz
 
             Console.WriteLine("Введите четырехзначное число");
             int n23 = int.Parse(Console.ReadLine());
-            if (1000 <= n23 <= 9999)
+            if (1000 <= n23 & n23 <= 9999)
             {
                 Console.WriteLine($"В числе {(n23 / 100) % 10} сотен и {n23 / 1000} тысяч");
             }
@@ -749,7 +751,7 @@ namespace dz
 
             Console.WriteLine("Введите 1 элемент арифметической прогрессии");
             double a1 = int.Parse(Console.ReadLine());
-            Console.WriteLine("Введите 2 элемент арифметической прогрессии);
+            Console.WriteLine("Введите 2 элемент арифметической прогрессии");
             double a2 = int.Parse(Console.ReadLine());
 
             double delta = a2 - a1;
