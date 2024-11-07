@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading;
 
 namespace dz
@@ -41,8 +41,9 @@ namespace dz
 
             Console.WriteLine("4 номер");
 
-            int num4 = int.Parse(Console.ReadLine());
-            Console.WriteLine(num4 + 10);
+            Console.WriteLine("Введите число");
+            double num4 = double.Parse(Console.ReadLine());
+            Console.WriteLine($"Новое число равно {num4 + 10}");
 
             Console.WriteLine("\n");
             //5 номер
@@ -50,8 +51,20 @@ namespace dz
 
             Console.WriteLine("5 номер");
 
+            Console.WriteLine("Введите длину стороны квадрата");
             int side5 = int.Parse(Console.ReadLine());
-            Console.WriteLine(side5 * 4);
+            if (side5 > 0)
+            {
+                Console.WriteLine($"Периметр равен {side5 * 4}");
+            }
+            else if (side5 == 0)
+            {
+                Console.WriteLine("Мощно; Квадрат со стороной 0 имеет периметр 0");
+            }
+            else
+            {
+                Console.WriteLine($"Квадрат с отрицательной стороной не существует в моём понимании, но если он есть в вашем, то его периметр равен {4 * side5}");
+            }
 
             Console.WriteLine("\n");
             //6
@@ -59,9 +72,17 @@ namespace dz
 
             Console.WriteLine("6 номер");
 
+            Console.WriteLine("Введите радиус окружности");
             double radius6 = double.Parse(Console.ReadLine());
-            Console.WriteLine($"Длина окружности: {Math.PI * 2 * radius6}");
-            Console.WriteLine($"Площадь круга: {Math.PI * radius6 * radius6}");
+            if (radius6 > 0)
+            {
+                Console.WriteLine($"Длина окружности: {Math.PI * 2 * radius6}");
+                Console.WriteLine($"Площадь круга: {Math.PI * radius6 * radius6}");
+            }
+            else
+            {
+                Console.WriteLine("Отрицательный радиус - это как?");
+            }
 
             Console.WriteLine("\n");
             //7
@@ -69,6 +90,7 @@ namespace dz
 
             Console.WriteLine("7 номер");
 
+            Console.WriteLine("Введите значение x");
             double x7 = double.Parse(Console.ReadLine());
             Console.WriteLine($"Косинус {x7} = {Math.Cos(x7)}");
 
@@ -78,15 +100,22 @@ namespace dz
 
             Console.WriteLine("8 номер");
 
+            Console.WriteLine("Введите длину первого основания");
             double fir_side = double.Parse(Console.ReadLine());
+            Console.WriteLine("Введите длину второго основания");
             double sec_side = double.Parse(Console.ReadLine());
+            Console.WriteLine("Введите высоту трапеции");
             double height = double.Parse(Console.ReadLine());
-
-            double delta8 = Math.Abs(fir_side - sec_side) / 2;
-
-            double lat_side = Math.Sqrt(delta8 * delta8 + height * height);
-
-            Console.WriteLine($"Периметр р/б трапеции равен {2 * lat_side + fir_side + sec_side}");
+            if (height <= 0 | fir_side <= 0 | sec_side <= 0)
+            {
+                Console.WriteLine("Все числа должны быть положительными");
+            }
+            else
+            {
+                double delta8 = Math.Abs(fir_side - sec_side) / 2;
+                double lat_side = Math.Sqrt(delta8 * delta8 + height * height);
+                Console.WriteLine($"Периметр р/б трапеции равен {2 * lat_side + fir_side + sec_side}");
+            }
 
             Console.WriteLine("\n");
             //9
@@ -95,15 +124,28 @@ namespace dz
 
             Console.WriteLine("9 номер");
 
+            Console.WriteLine("Введите стоимость одного килограмма конфет");
             double candy_kilo_cost = double.Parse(Console.ReadLine());
+            Console.WriteLine("Введите стоимость одного килограмма печенья");
             double cookies_kilo_cost = double.Parse(Console.ReadLine());
+            Console.WriteLine("Введите стоимость одного килограмма яблок");
             double apples_kilo_cost = double.Parse(Console.ReadLine());
 
+            Console.WriteLine("Введите массу конфет");
             double x9 = double.Parse(Console.ReadLine());
+            Console.WriteLine("Введите массу печенья");
             double y9 = double.Parse(Console.ReadLine());
+            Console.WriteLine("Введите массу яблок");
             double z9 = double.Parse(Console.ReadLine());
 
-            Console.WriteLine($"Общая сумма покупки равна {x9 * candy_kilo_cost + y9 * cookies_kilo_cost + z9 * apples_kilo_cost}");
+            if (x9 < 0 | y9 < 0 | z9 < 0 | candy_kilo_cost < 0 | cookies_kilo_cost < 0 | apples_kilo_cost < 0)
+            {
+                Console.WriteLine("Все числа должны быть неотрицательными");
+            }
+            else
+            {
+                Console.WriteLine($"Общая сумма покупки равна {x9 * candy_kilo_cost + y9 * cookies_kilo_cost + z9 * apples_kilo_cost}");
+            }
 
             Console.WriteLine("\n");
             //10
@@ -127,51 +169,18 @@ namespace dz
 
             Console.WriteLine("11 номер");
 
-            string num1 = Console.ReadLine();
-            string num2 = Console.ReadLine();
-
-            string arr = "0123456789-.,";
-            bool flag = false;
-            bool global_flag = true;
-
-            foreach (char i in num1)
+            try
             {
-                flag = false;
-                foreach (char c in arr)
-                {
-                    if (i == c)
-                    {
-                        flag = true;
-                    }
-                }
-                if (flag is false)
-                {
-                    Console.WriteLine("Нам нужны два ЧИСЛА, Билли");
-                    global_flag = false;
-                    break;
-                }
+                Console.WriteLine("Введите первое число");
+                double a11 = double.Parse(Console.ReadLine().Replace(",", "."));
+                Console.WriteLine("Введите второе число");
+                double b11 = double.Parse(Console.ReadLine().Replace(",", "."));
+
+                Console.WriteLine($"{b11} {a11}");
             }
-
-            foreach (char i in num2)
+            catch (Exception e)
             {
-                flag = false;
-                foreach (char c in arr)
-                {
-                    if (i == c)
-                    {
-                        flag = true;
-                    }
-                }
-                if (flag is false)
-                {
-                    Console.WriteLine("Нам нужны два ЧИСЛА, Билли");
-                    global_flag = false;
-                    break;
-                }
-            }
-            if (global_flag)
-            {
-                Console.WriteLine($"{num2} {num1}");
+                Console.WriteLine($"Ввод некорректен, нужны два числа ->\n{e.Message}");
             }
 
             Console.WriteLine("\n");
@@ -184,75 +193,125 @@ namespace dz
 
             Console.WriteLine("12 номер");
 
-            Console.WriteLine("Выберите фигуру - треугольник (равносторонний), четырёхугольник (квадрат) или круг - и впишите в консоль");
-            string figure = Console.ReadLine().ToLower();
+            Console.WriteLine("Выберите фигуру и впишите её номер в консоль:\n1 - треугольник (равносторонний); \n2 - четырёхугольник (квадрат)'\n3 - круг.");
+            int figure = int.Parse(Console.ReadLine());
 
             switch (figure)
             {
-                case "треугольник":
-                    Console.WriteLine("Площадь или периметр?");
-
-                    switch (Console.ReadLine().ToLower())
+                case 1:
+                    Console.WriteLine("Что нужно вычислить? Площадь - 1 - или периметр - 2?");
+                    switch (int.Parse(Console.ReadLine()))
                     {
-                        case "периметр":
+                        case 2:
                             Console.WriteLine("Введите сторону треугольника");
                             double side = double.Parse(Console.ReadLine());
-                            Console.WriteLine($"Периметр равен {3 * side}");
-                            Console.WriteLine($"Квадрат со стороной {side} имел бы периметр {side * 4}, длина окружности радиуса {side} = {side * 2 * Math.PI}");
-                            break;
-                        case "площадь":
+                            if (side <= 0)
+                            {
+                                Console.WriteLine("Нужно положительное число");
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine($"Периметр равен {3 * side}");
+                                Console.WriteLine($"Квадрат со стороной {side} имел бы периметр {side * 4};\nДлина окружности круга с радиусом {side} = {side * 2 * Math.PI}");
+                                break;
+                            }
+                        case 1:
                             Console.WriteLine("Введите сторону треугольника");
                             double tr_side = double.Parse(Console.ReadLine());
-                            Console.WriteLine($"{tr_side * tr_side * Math.Sqrt(3) / 4}");
-                            Console.WriteLine($"Квадрат со стороной {tr_side} имел бы площадь {tr_side * tr_side}, круг - {tr_side * tr_side * Math.Sqrt(3) / 4}");
-                            break;
+                            if (tr_side <= 0)
+                            {
+                                Console.WriteLine("Нужно положительное число");
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine($"{tr_side * tr_side * Math.Sqrt(3) / 4}");
+                                Console.WriteLine($"Квадрат со стороной {tr_side} имел бы площадь {tr_side * tr_side};\nПлощадь круга радиуса {tr_side} = {tr_side * tr_side * Math.Sqrt(3) / 4}");
+                                break;
+                            }
                         default:
                             Console.WriteLine("Ну там два слова, третьего не дано");
                             break;
                     }
                     break;
 
-                case "круг":
-                    Console.WriteLine("Площадь или длина окружности?");
-                    switch (Console.ReadLine().ToLower())
+                case 3:
+                    Console.WriteLine("Что нужно подсчитать? Площадь - 1 - или длина окружности - 2?");
+                    switch (int.Parse(Console.ReadLine()))
                     {
-                        case "длина окружности":
+                        case 2:
                             Console.WriteLine("Введите радиус");
                             double rad = double.Parse(Console.ReadLine());
-                            Console.WriteLine($"Длина окружности равна {2 * Math.PI * rad}");
-                            Console.WriteLine($"Квадрат со стороной {rad} имел бы периметр {rad * 4}, треугольник - {rad * 3}");
-                            break;
-                        case "площадь":
+                            if (rad <= 0)
+                            {
+                                Console.WriteLine("Нужно положительное число");
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine($"Длина окружности равна {2 * Math.PI * rad}");
+                                Console.WriteLine($"Квадрат со стороной {rad} имел бы периметр {rad * 4};\nтреугольник - {rad * 3}");
+                                break;
+                            }
+                        case 1:
                             Console.WriteLine("Введите радиус");
                             double radius = double.Parse(Console.ReadLine());
-                            Console.WriteLine($"Площадь равна {Math.PI * radius * radius}");
-                            Console.WriteLine($"Квадрат со стороной {radius} имел бы площадь {radius * radius}, треугольник - {radius * radius * Math.Sqrt(3) / 4}");
-                            break;
+                            if (radius <= 0)
+                            {
+                                Console.WriteLine("Нужно положительное число");
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine($"Площадь равна {Math.PI * radius * radius}");
+                                Console.WriteLine($"Квадрат со стороной {radius} имел бы площадь {radius * radius};\nТреугольник со стороной {radius} имел бы площадь {radius * radius * Math.Sqrt(3) / 4}");
+                                break;
+                            }
                         default:
                             Console.WriteLine("Ну там два слова, третьего не дано");
                             break;
                     }
                     break;
-                case "четырехугольник":
-                    Console.WriteLine("Площадь или периметр?");
-                    switch (Console.ReadLine().ToLower())
+                case 2:
+                    Console.WriteLine("Что считать? Площадь - 1 - или периметр - 2?");
+                    switch (int.Parse(Console.ReadLine()))
                     {
-                        case "периметр":
+                        case 2:
                             Console.WriteLine("Введите сторону квадрата");
                             double a = double.Parse(Console.ReadLine());
-                            Console.WriteLine($"Периметр равен {a * 4}");
-                            Console.WriteLine($"Круг с радиусом {a} имел бы длину окружности {Math.PI * 2 * a}, треугольник имел бы периметр {a * 3}");
-                            break;
-                        case "площадь":
+                            if (a <= 0)
+                            {
+                                Console.WriteLine("Нужно положительное число");
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine($"Периметр равен {a * 4}");
+                                Console.WriteLine($"Круг с радиусом {a} имел бы длину окружности {Math.PI * 2 * a};\nТреугольник со стороной {a} имел бы периметр {a * 3}");
+                                break;
+                            }
+                        case 1:
                             Console.WriteLine("Введите сторону квадрата");
                             double i = double.Parse(Console.ReadLine());
-                            Console.WriteLine($" Площадь равна {i * i}");
-                            Console.WriteLine($"Круг с радиусом {i} имел бы площадь {Math.PI * i * i}, треугольник - {i * i * Math.Sqrt(3) / 4}");
-                            break;
+                            if (i <= 0)
+                            {
+                                Console.WriteLine("Нужно положительное число");
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine($"Площадь равна {i * i}");
+                                Console.WriteLine($"Круг с радиусом {i} имел бы площадь {Math.PI * i * i};\nПлощадь треугольника со стороной {i} равна {i * i * Math.Sqrt(3) / 4}");
+                                break;
+                            }
                         default:
                             Console.WriteLine("Ну там два слова, третьего не дано");
                             break;
                     }
+                    break;
+                default:
+                    Console.WriteLine("Такой фигуры пока нет...");
                     break;
             }
 
@@ -324,18 +383,24 @@ namespace dz
             // Выводятся средние арифметическое и геометрическое
 
             Console.WriteLine("17 номер");
-
-            int a17 = int.Parse(Console.ReadLine());
-            int b17 = int.Parse(Console.ReadLine());
-
-            if ((a17 < 0) | (b17 < 0))
+            try
             {
-                Console.WriteLine("Оба числа должны быть больше нуля");
+                int a17 = int.Parse(Console.ReadLine());
+                int b17 = int.Parse(Console.ReadLine());
+
+                if ((a17 < 0) | (b17 < 0))
+                {
+                    Console.WriteLine("Оба числа должны быть больше нуля");
+                }
+                else
+                {
+                    Console.WriteLine($"Среднее арифметическое равно {(double)(a17 + b17) / 2}");
+                    Console.WriteLine($"Среднее геометрическое равно {Math.Sqrt(a17 * b17)}");
+                }
             }
-            else
+            catch (Exception e)
             {
-                Console.WriteLine($"Среднее арифметическое равно {(double)(a17 + b17) / 2}");
-                Console.WriteLine($"Среднее геометрическое равно {Math.Sqrt(a17 * b17)}");
+                Console.WriteLine($"Числа должны быть натуральными: {e.Message}");
             }
 
             Console.WriteLine("\n");
@@ -344,10 +409,15 @@ namespace dz
             // На выходе расстояние между ними
 
             Console.WriteLine("18 номер");
-
-            string[] first_dot = Console.ReadLine().Split();
-            string[] second_dot = Console.ReadLine().Split();
-
+            try
+            {
+                string[] first_dot = Console.ReadLine().Split();
+                string[] second_dot = Console.ReadLine().Split();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Некорректный ввод, нужны два числа в одной строке через пробел (и так два раза)", e);
+            }
             double x1 = double.Parse(first_dot[0]);
             double y1 = double.Parse(first_dot[1]);
             double x2 = double.Parse(second_dot[0]);
@@ -385,13 +455,14 @@ namespace dz
 
             Console.WriteLine("20 номер");
 
+            Console.WriteLine("Введите количество секунд, прошедших с 00:00");
             int n20 = int.Parse(Console.ReadLine());
-
+            
             int hour = n20 / 3600;
             int minute = n20 % 3600 / 60;
             int second = n20 % 60;
 
-            Console.WriteLine($"Время - {hour}:{minute}:{second}");
+            Console.WriteLine($"Время - {hour} ч:{minute} мин:{second} сек");
 
             Console.WriteLine("\n");
             //21
@@ -417,17 +488,33 @@ namespace dz
 
             Console.WriteLine("22 номер");
 
+            Console.WriteLine("Введите трехзначное число");
             int n22 = int.Parse(Console.ReadLine());
-            Console.WriteLine($"{n22 % 10 * 100 + (int)n22 / 10}");
-
+            if (100 <= n22 <= 999)
+            {
+                Console.WriteLine($"{n22 % 10 * 100 + (int)n22 / 10}");
+            }
+            else
+            {
+                Console.WriteLine("Это не трехзначное число");
+            }
+                        
             Console.WriteLine("\n");
             //23
             // Дано число, вывести количество сотен и тысяч в нём
 
             Console.WriteLine("23 номер");
 
+            Console.WriteLine("Введите четырехзначное число");
             int n23 = int.Parse(Console.ReadLine());
-            Console.WriteLine($"В числе {(n23 / 100) % 10} сотен и {n23 / 1000} тысяч");
+            if (1000 <= n23 <= 9999)
+            {
+                Console.WriteLine($"В числе {(n23 / 100) % 10} сотен и {n23 / 1000} тысяч");
+            }
+            else
+            {
+                Console.WriteLine("Это не четырехзначное число");
+            }
 
             Console.WriteLine("\n");
             //24
@@ -439,15 +526,23 @@ namespace dz
 
             Console.WriteLine("24 номер");
 
+            Console.WriteLine("Введите четырехзначное число");
             string n = Console.ReadLine();
 
-            Console.WriteLine($"1) {int.Parse(n[3].ToString() + n[2].ToString() + n[1].ToString() + n[0].ToString())}");
+            if (int.TryParse(n, out _))
+            {
+                Console.WriteLine($"1) {int.Parse(n[3].ToString() + n[2].ToString() + n[1].ToString() + n[0].ToString())}");
 
-            Console.WriteLine($"2) {int.Parse(n[1].ToString() + n[0].ToString() + n[3].ToString() + n[2].ToString())}");
+                Console.WriteLine($"2) {int.Parse(n[1].ToString() + n[0].ToString() + n[3].ToString() + n[2].ToString())}");
 
-            Console.WriteLine($"3) {int.Parse(n[0].ToString() + n[2].ToString() + n[1].ToString() + n[3].ToString())}");
+                Console.WriteLine($"3) {int.Parse(n[0].ToString() + n[2].ToString() + n[1].ToString() + n[3].ToString())}");
 
-            Console.WriteLine($"4) {int.Parse(n[2].ToString() + n[3].ToString() + n[0].ToString() + n[1].ToString())}");
+                Console.WriteLine($"4) {int.Parse(n[2].ToString() + n[3].ToString() + n[0].ToString() + n[1].ToString())}");
+            }
+            else
+            {
+                Console.WriteLine("Нужно четырехзначное число");
+            }
 
             Console.WriteLine("\n");
             //25
@@ -457,11 +552,19 @@ namespace dz
 
             Console.WriteLine("25 номер");
 
-            int n25 = int.Parse(Console.ReadLine());
+            Console.WriteLine("Введите трехзначное число");
+            string n25 = Console.ReadLine();
 
-            int x_100 = n25 / 100;
-            int x25 = n25 % 100 * 10 + x_100;
-            Console.WriteLine($"x = {x25}");
+            if (int.TryParse(n25, out _) & n25.Length == 3)
+            {
+                int x25 = int.Parse($"{n25[1]}{n25[2]}{n25[0]}");
+                Console.WriteLine($"x = {x25}");
+            }
+            else
+            {
+                Console.WriteLine("Нужно трехзначное число");
+            }
+
 
             Console.WriteLine("\n");
             //26
@@ -472,8 +575,11 @@ namespace dz
 
             Console.WriteLine("26 номер");
 
+            Console.WriteLine("Введите количество часов");
             int h = int.Parse(Console.ReadLine());
+            Console.WriteLine("Введите количество минут");
             int m = int.Parse(Console.ReadLine());
+            Console.WriteLine("Ввдите количсетво секунд");
             int s = int.Parse(Console.ReadLine());
 
             int tot_sec = h * 3600 + m * 6 + s;
@@ -487,6 +593,7 @@ namespace dz
 
             Console.WriteLine("27 номер");
 
+            Console.WriteLine("Введите угол часовой стрелки (в радианах)");
             double y27 = double.Parse(Console.ReadLine());
 
             double hours = Math.Floor(6 * y27);
@@ -501,8 +608,11 @@ namespace dz
 
             Console.WriteLine("28 номер");
 
+            Console.WriteLine("Введите первое число");
             double a28 = double.Parse(Console.ReadLine());
+            Console.WriteLine("Введите второе число");
             double b28 = double.Parse(Console.ReadLine());
+            Console.WriteLine("Введите третье число");
             double c28 = double.Parse(Console.ReadLine());
 
             if (Math.Abs(a28) <= Math.Abs(b28))
@@ -530,8 +640,11 @@ namespace dz
 
             Console.WriteLine("29 номер");
 
+            Console.WriteLine("Введите первое число");
             double a29 = double.Parse(Console.ReadLine());
+            Console.WriteLine("Введите второе число");
             double b29 = double.Parse(Console.ReadLine());
+            Console.WriteLine("Введите третье число");
             double c29 = double.Parse(Console.ReadLine());
             double ans29 = 0;
 
@@ -585,6 +698,7 @@ namespace dz
 
             Console.WriteLine("30 номер");
 
+            Console.WriteLine("Введите число");
             int number = int.Parse(Console.ReadLine());
 
             int sumDel = 0;
@@ -603,9 +717,13 @@ namespace dz
 
             Console.WriteLine("31 номер");
 
+            Console.WriteLine("Введите коэффициент перед х в кубе");
             double a31 = double.Parse(Console.ReadLine());
+            Console.WriteLine("Введите коэффициент перед х в квадрате");
             double b31 = double.Parse(Console.ReadLine());
+            Console.WriteLine("Введите коэффициент перед х в первой степени");
             double c31 = double.Parse(Console.ReadLine());
+            Console.WriteLine("Введите свободный коэффициент");
             double d31 = double.Parse(Console.ReadLine());
 
             if (a31 == 0)
@@ -629,9 +747,9 @@ namespace dz
 
             Console.WriteLine("32 номер");
 
-            Console.WriteLine("Введите 1 элемент");
+            Console.WriteLine("Введите 1 элемент арифметической прогрессии");
             double a1 = int.Parse(Console.ReadLine());
-            Console.WriteLine("Введите 2 элемент");
+            Console.WriteLine("Введите 2 элемент арифметической прогрессии);
             double a2 = int.Parse(Console.ReadLine());
 
             double delta = a2 - a1;
@@ -781,7 +899,14 @@ namespace dz
 
             Console.WriteLine("1) Введите 12 цифр кода");
             string nums = Console.ReadLine();
-            Console.WriteLine($"Контрольная цифра равна{Code(nums)}");
+            if (nums.Length != 12)
+            {
+                Console.WriteLine("Нужно 12 цифр");
+            }
+            else
+            {
+                Console.WriteLine($"Контрольная цифра равна{Code(nums)}");
+            }
 
             nums = "";
             Random rand = new Random();
