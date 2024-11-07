@@ -357,8 +357,11 @@ namespace dz
 
             Console.WriteLine("16 номер");
 
+            Console.WriteLine("Введите коэффициент перед х в квадрате");
             double a16 = double.Parse(Console.ReadLine());
+            Console.WriteLine("Введите коэффициент перед х в первой");
             double b16 = double.Parse(Console.ReadLine());
+            Console.WriteLine("Введите свободный коэффициент");
             double c16 = double.Parse(Console.ReadLine());
             double discrim = b16 * b16 - 4 * a16 * c16;
             if (discrim < 0)
@@ -385,7 +388,9 @@ namespace dz
             Console.WriteLine("17 номер");
             try
             {
+                Console.WriteLine("Введите первое натуральное число");
                 int a17 = int.Parse(Console.ReadLine());
+                Console.WriteLine("Введите второе натуральное число");
                 int b17 = int.Parse(Console.ReadLine());
 
                 if ((a17 < 0) | (b17 < 0))
@@ -411,7 +416,9 @@ namespace dz
             Console.WriteLine("18 номер");
             try
             {
+                Console.WriteLine("Введите координаты первой точки");
                 string[] first_dot = Console.ReadLine().Split();
+                Console.WriteLine("Введите координаты второй точки");
                 string[] second_dot = Console.ReadLine().Split();
 
                 double x1 = double.Parse(first_dot[0]);
@@ -648,51 +655,24 @@ namespace dz
             double b29 = double.Parse(Console.ReadLine());
             Console.WriteLine("Введите третье число");
             double c29 = double.Parse(Console.ReadLine());
-            double ans29 = 0;
+            double min29 = 10000000;
+            double max29 = 0;
 
-            if (a29 <= b29)
+            double[] array = new double[] { a29, b29, c29 };
+
+            foreach (double i29 in array)
             {
-                if (a29 <= c29)
+                if (i29 < min29)
                 {
-                    ans29 += a29;
-                    if (b29 <= c29)
-                    {
-                        ans29 += c29;
-                    }
-                    else
-                    {
-                        ans29 += b29;
-                    }
+                    min29 = i29;
+                }
+                if (i29 > max29)
+                {
+                    max29 = i29;
                 }
             }
-            else
-            {
-                if (b29 <= c29)
-                {
-                    ans29 += b29;
-                    if (c29 <= a29)
-                    {
-                        ans29 += a29;
-                    }
-                    else
-                    {
-                        ans29 += c29;
-                    }
-                }
-                else
-                {
-                    ans29 += c29;
-                    if (b29 <= a29)
-                    {
-                        ans29 += a29;
-                    }
-                    else
-                    {
-                        ans29 += b29;
-                    }
-                }
-            }
-            Console.WriteLine($"Сумма равна {ans29}");
+
+            Console.WriteLine($"Сумма равна {min29 + max29}");
 
             Console.WriteLine("\n");
             //30
